@@ -3,6 +3,8 @@
 #include <unordered_map>
 #include <fstream>
 #include <vector>
+#include <map>
+#include <sstream>
 
 struct Token {
 	int number;
@@ -25,7 +27,10 @@ std::unordered_map<std::string, int> TW = {
 	{"enter", 11},
 	{"displ", 12},
 	{"true", 13},
-	{"false", 14}
+	{"false", 14},
+	{"int", 15},
+	{"bool", 16},
+	{"float", 17}
 };
 
 std::unordered_map<std::string, int> TL = {
@@ -39,19 +44,18 @@ std::unordered_map<std::string, int> TL = {
 	{"min", 8},
 	{"or", 9},
 	{"mult", 10},
-	{"+", 11},
-	{"-", 12},
-	{"assign", 13},
-	{"div", 14},
-	{"and", 15},
-	{"~", 16},
-	{";", 17},
-	{",", 18},
-	{":", 19},
+	{"assign", 11},
+	{"div", 12},
+	{"and", 13},
+	{"~", 14},
+	{";", 15},
+	{",", 16},
+	{":", 17},
+    /*{"+", 18},
+	{"-", 19},
 	{"[", 20},
-	{"]", 21}
+	{"]", 21}*/
 };
-
 
 std::unordered_map<std::string, int> TN;
 std::unordered_map<std::string, int> TI;
@@ -78,21 +82,77 @@ enum states {
 	V
 };
 
+enum LexError {
+	UnknownSymbole,
+	ExpectedEndCommentary,
+};
+
+// Структура для хранения информации об ошибке
+struct ErrorInfo {
+	LexError type;
+	int line;
+	int position;
+	std::string message;
+};
+
+// Список ошибок
+std::vector<ErrorInfo> errors;
+
+// Функция для записи ошибок в файл
+void logError(const ErrorInfo& error) {
+	std::ofstream errorLog("error_log.txt", std::ios::app);
+	if (errorLog.is_open()) {
+		errorLog << "Error: " << error.message
+			<< " at line: " << error.line
+			<< ", position: " << error.position << std::endl;
+		errorLog.close();
+	}
+	else {
+		std::cerr << "Error: can't open error log file.\n";
+	}
+}
+
+// Функция для обработки ошибок
+void handleError(LexError type, int line = -1, int position = -1) {
+	std::map<LexError, std::string> errorMessages = {
+		{ UnknownSymbole, "Unknown symbol encountered" },
+		{ ExpectedEndCommentary, "Expected end commentary ']'" },
+	};
+
+	// Формируем информацию об ошибке
+	ErrorInfo error = { type, line, position, errorMessages[type] };
+	errors.push_back(error);
+	logError(error);
+
+	// Выводим сообщение об ошибке на экран
+	std::cerr << "Error: " << error.message;
+	if (line != -1)
+		std::cerr << " at line: " << line;
+	if (position != -1)
+		std::cerr << ", position: " << position << std::endl;
+
+	std::cerr << std::endl;
+}
+
 std::ifstream input("input.txt");
 int z = 0;
 char CH;
 std::string S;
+int currentLine = 1;
+int currentPosition = 0;
 
 void gc() {
-	if (input.get(CH))
-		std::cout << "GC:" << CH << '\n';
+	if (input.get(CH)) {
+		currentPosition++;
+		//std::cout << "GC:" << CH << " position:" << currentPosition << '\n';
+	}
 	else
 		CH = '\0';
 }
 
 void add() {
 	S.push_back(CH);
-	std::cout << "S:" << S << '\n';
+	//std::cout << "S:" << S << '\n';
 }
 
 void nill() {
@@ -100,6 +160,8 @@ void nill() {
 }
 
 void out(int numb, int value) {
+	std::cout << "line:" << currentLine << '\n';
+	std::cout << "Out:" << numb << ", " << value << " Text:" << S << " Line:" << currentLine << '\n' << '\n';
 	tokens.push_back({ numb, value });
 }
 
@@ -147,6 +209,17 @@ bool digit() {
 		return false;
 }
 
+bool checkTL() {
+	std::string str;
+	str.push_back(CH);
+	auto got = TL.find(str);
+	if (got != TL.end())
+		return true;
+	else
+		return false;
+}
+
+
 int main(int argc, char* argv[]) {
 	states CS;
 	CS = H;
@@ -155,8 +228,13 @@ int main(int argc, char* argv[]) {
 		switch (CS) {
 		case H:
 
-			while (CH == ' ' || CH == '\n')
+			while (CH == ' ' || CH == '\n') {
+				if (CH == '\n') {
+					currentLine++;
+					currentPosition = 0;
+				}
 				gc();
+			}
 
 			if (let()) {
 				nill();
@@ -165,7 +243,7 @@ int main(int argc, char* argv[]) {
 				CS = I;
 			}
 
-			else if (CH <= '1') {
+			else if ( CH == '0' || CH == '1') {
 				nill();
 				add();
 				gc();
@@ -179,7 +257,7 @@ int main(int argc, char* argv[]) {
 				CS = N8;
 			}
 
-			else if (CH >= '8') {
+			else if (CH == '8' || CH == '9') {
 				nill();
 				add();
 				gc();
@@ -201,13 +279,16 @@ int main(int argc, char* argv[]) {
 			else {
 				nill();
 				add();
-				gc();
 				look(TL);
 				if (z != 0) {
 					out(2, z);
+					gc();
 					CS = H;
-				} else
+				}
+				else {
+					handleError(UnknownSymbole, currentLine, currentPosition);
 					CS = ER;
+				}
 
 			}
 			break;
@@ -215,8 +296,7 @@ int main(int argc, char* argv[]) {
 		case I:
 			while (let() || digit()) {
 				add();
-				if (CH != '\n')
-					gc();
+				gc();
 			}
 			look(TW);
 			if (z != 0) {
@@ -260,7 +340,7 @@ int main(int argc, char* argv[]) {
 				CS = _N8;
 			}
 
-			else if (CH >= '8') {
+			else if (CH == '8' || CH == '9') {
 				add();
 				gc();
 				CS = N10;
@@ -302,7 +382,7 @@ int main(int argc, char* argv[]) {
 				CS = _N2;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -315,8 +395,8 @@ int main(int argc, char* argv[]) {
 		case _N2:
 
 			if (tolower(CH) == 'a' || tolower(CH) == 'b' ||
-				tolower(CH) == 'c' || tolower(CH) == 'd' ||
-				tolower(CH) == 'e' || tolower(CH) == 'f' || digit()) {
+					tolower(CH) == 'c' || tolower(CH) == 'd' ||
+						tolower(CH) == 'e' || tolower(CH) == 'f' || digit()) {
 				add();
 				gc();
 				CS = N16;
@@ -328,7 +408,7 @@ int main(int argc, char* argv[]) {
 				CS = _N16;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -345,7 +425,7 @@ int main(int argc, char* argv[]) {
 				gc();
 			}
 
-			if (CH >= '8') {
+			if (CH == '8' || CH == '9') {
 				add();
 				gc();
 				CS = N10;
@@ -387,7 +467,7 @@ int main(int argc, char* argv[]) {
 				CS = _N8;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -400,7 +480,7 @@ int main(int argc, char* argv[]) {
 
 		case _N8:
 
-			if (CH == ' ' || CH == '\n' || CH == '\t') {
+			if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -442,7 +522,7 @@ int main(int argc, char* argv[]) {
 				CS = NR;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 			}
@@ -474,7 +554,7 @@ int main(int argc, char* argv[]) {
 				CS = _N16;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 			}
@@ -497,7 +577,7 @@ int main(int argc, char* argv[]) {
 				CS = _N16;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -509,14 +589,15 @@ int main(int argc, char* argv[]) {
 
 		case _N16:
 
-			 if (CH == ' ' || CH == '\n' || CH == '\t') {
+			 if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
-			}
+			 }
 
 			else
 				CS = ER;
+
 			break;
 
 		case NR:
@@ -531,7 +612,7 @@ int main(int argc, char* argv[]) {
 				CS = EXPR;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -636,7 +717,13 @@ int main(int argc, char* argv[]) {
 		case C:
 
 			while (CH != ']') {
-				gc();
+				if (CH == '\0') {
+					handleError(ExpectedEndCommentary);
+					CS = ER;
+					break;
+				}
+				else
+					gc();
 			}
 
 			if (CH == ']') {
@@ -648,7 +735,6 @@ int main(int argc, char* argv[]) {
 
 		case C1:
 
-			gc();
 			CS = H;
 			break;
 
@@ -656,11 +742,12 @@ int main(int argc, char* argv[]) {
 			return true;
 
 		case ER:
-			std::cout << "ERROR";
+			std::cout << "ERROR" << " " << "Last text:" << S << '\n';
 			return false;
 		}
-		outFile("tokens.txt");
 	}
+	outFile("tokens.txt");
+	std::cout << "Lex Analyse Complete!" << std::endl;
 	return 0;
 }
 

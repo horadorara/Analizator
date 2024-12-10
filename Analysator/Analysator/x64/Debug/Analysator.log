@@ -1,3 +1,3 @@
 ﻿  LexAnalysator.cpp
-D:\7 Semestr\TFA\Analizator\Analysator\Analysator\LexAnalysator.cpp(120,23): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-  Analysator.vcxproj -> D:\7 Semestr\TFA\Analizator\Analysator\x64\Debug\Analysator.exe
+D:\GitHub\Analizator\Analysator\Analysator\LexAnalysator.cpp(183,23): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  Analysator.vcxproj -> D:\GitHub\Analizator\Analysator\x64\Debug\Analysator.exe

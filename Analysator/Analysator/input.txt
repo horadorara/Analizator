@@ -1,2 +1,26 @@
 begin
-15 end
+1E+012
+1E012
+;
+1.012
+.012e15
+11101010101001o
+[ nice comment end ]
+1 EQ 1;
+2 NE 3
+2 LT 3
+2 LE 2
+3 GT 2
+3 GE 2
+2 plus 2
+2 min 2
+5 or 10
+2 mult 1
+a1 assign 5
+2 div 2
+3 and 3
+~3 ;
+,
+.
+EQ1
+end

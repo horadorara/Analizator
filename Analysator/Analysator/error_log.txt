@@ -1,0 +1,1 @@
+Error: Unknown symbol encountered at line: 26, position: 1
