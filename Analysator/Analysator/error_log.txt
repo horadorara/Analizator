@@ -1,1 +1,14 @@
 Error: Unknown symbol encountered at line: 26, position: 1
+Error: Invalid number form at line: 2, position: 5
+Error: Invalid number form at line: 7, position: 16
+Error: Invalid number form at line: 7, position: 16
+Error: Invalid number form at line: 7, position: 16
+Error: Invalid number form at line: 7, position: 16
+Error: Invalid number form at line: 3, position: 12
+Error: Invalid number form at line: 3, position: 12
+Error: Unknown symbol encountered at line: 3, position: 13
+Error: Invalid number form at line: 3, position: 2
+Error: Invalid number form at line: 3, position: 2
+Error: Unknown symbol encountered at line: 4, position: 13
+Error: Unknown symbol encountered at line: 8, position: 13
+Error: Unknown symbol encountered at line: 8, position: 13

@@ -13,10 +13,53 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Lex">
+      <UniqueIdentifier>{ca914b23-f2e8-45c1-ad96-0eec9f6f543f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Syntax">
+      <UniqueIdentifier>{c1b378a5-6095-4d0d-a36c-82b3d349e6d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LexAnalysator.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Tables.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="LexAnalyzator.cpp">
+      <Filter>Исходные файлы\Lex</Filter>
+    </ClCompile>
+    <ClCompile Include="LexFunctions.cpp">
+      <Filter>Исходные файлы\Lex</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxAnalyzator.cpp">
+      <Filter>Исходные файлы\Syntax</Filter>
+    </ClCompile>
+    <ClCompile Include="SyntaxFunctions.cpp">
+      <Filter>Исходные файлы\Syntax</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tables.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="lex.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="syntax.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="lexeme.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tokens.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="input.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>

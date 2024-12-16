@@ -1,26 +1,14 @@
 begin
-1E+012
-1E012
-;
-1.012
-.012e15
-11101010101001o
-[ nice comment end ]
-1 EQ 1;
-2 NE 3
-2 LT 3
-2 LE 2
-3 GT 2
-3 GE 2
-2 plus 2
-2 min 2
-5 or 10
-2 mult 1
-a1 assign 5
-2 div 2
-3 and 3
-~3 ;
-,
-.
-EQ1
+var a1, a2 : int;;
+enter d1 d2 d3 d4 d5 d6 d7;
+for s1 assign 10 val 5 EQ 5 do displ 1;
+[ for s1 assign 5 val 5 EQ 5 do displ 1
+for s1 assign 10 val 5 EQ 5 do displ 1 : enter d1 d2 d3 d4];
+for s1 assign 10 val 5 EQ 5 do displ 1;
+p1 assign 5 EQ 5;
+p2 assign 5 plus 5;
+p3 assign 5 mult 5;
+if p1 EQ 5 then p1 assign 10 else p1 assign 0 plus 5 end;
+for p1 assign 5 val p1 plus 1 do p2 assign 10;
+enter d1 d2 d3 d4 d5 d6 d7
 end

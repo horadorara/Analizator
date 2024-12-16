@@ -103,7 +103,8 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>Default</ConformanceMode>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +128,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LexAnalysator.cpp" />
+    <ClCompile Include="LexAnalyzator.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SyntaxAnalyzator.cpp" />
+    <ClCompile Include="SyntaxFunctions.cpp" />
+    <ClCompile Include="Tables.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lex.h" />
+    <ClCompile Include="LexFunctions.cpp" />
+    <ClInclude Include="lexeme.h" />
+    <ClInclude Include="syntax.h" />
+    <ClInclude Include="tables.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt" />
+    <Text Include="tokens.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
