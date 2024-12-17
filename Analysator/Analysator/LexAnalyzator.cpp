@@ -1,7 +1,6 @@
 #include "lex.h"
 #include "tables.h"
 #include "lexeme.h"
-#include <Windows.h>
 
 bool lexScan() {
 	states CS;

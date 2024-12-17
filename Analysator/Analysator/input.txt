@@ -1,5 +1,7 @@
 begin
 var a1, a2 : int;;
+var b1: bool;;
+b1 assign true;
 enter d1 d2 d3 d4 d5 d6 d7;
 for s1 assign 10 val 5 EQ 5 do displ 1;
 [ for s1 assign 5 val 5 EQ 5 do displ 1

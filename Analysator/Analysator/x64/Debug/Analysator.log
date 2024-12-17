@@ -1,2 +1,8 @@
-﻿  SyntaxAnalyzator.cpp
+﻿  LexAnalyzator.cpp
+  SyntaxAnalyzator.cpp
+  SyntaxFunctions.cpp
+  main.cpp
+D:\GitHub\Analizator\Analysator\Analysator\syntax.h(5,23): warning C4091: extern : пропускается слева от "std::basic_string<char,std::char_traits<char>,std::allocator<char>>", когда ни одна переменная не объявлена
+  Создание кода...
+D:\GitHub\Analizator\Analysator\Analysator\LexAnalyzator.cpp(650): warning C4715: lexScan: значение возвращается не при всех путях выполнения
   Analysator.vcxproj -> D:\GitHub\Analizator\Analysator\x64\Debug\Analysator.exe

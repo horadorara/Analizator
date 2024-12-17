@@ -10,8 +10,8 @@ int main() {
 		outFile("tokens.txt");
 		std::cout << "Lex Analyse Complete!" << std::endl;
 
-		PROGRAMM();
-		std::cout << "Syntax analysis complete!" << std::endl;
+		auto syntaxTree = PROGRAMM();
+		printSyntaxTree(syntaxTree);
 	}
 	catch (const std::runtime_error& e) {
 		std::cerr << "Error: " << e.what() << std::endl;
