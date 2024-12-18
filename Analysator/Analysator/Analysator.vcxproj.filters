@@ -16,7 +16,7 @@
     <Filter Include="Исходные файлы\Lex">
       <UniqueIdentifier>{ca914b23-f2e8-45c1-ad96-0eec9f6f543f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Syntax">
+    <Filter Include="Исходные файлы\Syntax-Semantic">
       <UniqueIdentifier>{c1b378a5-6095-4d0d-a36c-82b3d349e6d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -33,11 +33,11 @@
     <ClCompile Include="LexFunctions.cpp">
       <Filter>Исходные файлы\Lex</Filter>
     </ClCompile>
-    <ClCompile Include="SyntaxAnalyzator.cpp">
-      <Filter>Исходные файлы\Syntax</Filter>
+    <ClCompile Include="Syntax-SemanticAnalyzator.cpp">
+      <Filter>Исходные файлы\Syntax-Semantic</Filter>
     </ClCompile>
     <ClCompile Include="SyntaxFunctions.cpp">
-      <Filter>Исходные файлы\Syntax</Filter>
+      <Filter>Исходные файлы\Syntax-Semantic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="lex.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="syntax.h">
+    <ClInclude Include="syntax-semantic.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="lexeme.h">

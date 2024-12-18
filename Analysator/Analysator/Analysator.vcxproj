@@ -80,6 +80,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -109,6 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +132,7 @@
   <ItemGroup>
     <ClCompile Include="LexAnalyzator.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SyntaxAnalyzator.cpp" />
+    <ClCompile Include="Syntax-SemanticAnalyzator.cpp" />
     <ClCompile Include="SyntaxFunctions.cpp" />
     <ClCompile Include="Tables.cpp" />
   </ItemGroup>
@@ -138,7 +140,7 @@
     <ClInclude Include="lex.h" />
     <ClCompile Include="LexFunctions.cpp" />
     <ClInclude Include="lexeme.h" />
-    <ClInclude Include="syntax.h" />
+    <ClInclude Include="syntax-semantic.h" />
     <ClInclude Include="tables.h" />
   </ItemGroup>
   <ItemGroup>

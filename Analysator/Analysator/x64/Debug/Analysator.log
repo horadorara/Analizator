@@ -1,8 +1,10 @@
-﻿  LexAnalyzator.cpp
-  SyntaxAnalyzator.cpp
-  SyntaxFunctions.cpp
-  main.cpp
-D:\GitHub\Analizator\Analysator\Analysator\syntax.h(5,23): warning C4091: extern : пропускается слева от "std::basic_string<char,std::char_traits<char>,std::allocator<char>>", когда ни одна переменная не объявлена
-  Создание кода...
-D:\GitHub\Analizator\Analysator\Analysator\LexAnalyzator.cpp(650): warning C4715: lexScan: значение возвращается не при всех путях выполнения
+﻿  Syntax-SemanticAnalyzator.cpp
+D:\GitHub\Analizator\Analysator\Analysator\Syntax-SemanticAnalyzator.cpp(501): warning C4305: аргумент: усечение из "int" в "const _Elem"
+          with
+          [
+              _Elem=char
+          ]
+D:\GitHub\Analizator\Analysator\Analysator\Syntax-SemanticAnalyzator.cpp(501,91): warning C4309: аргумент: усечение константного значения
+LINK : warning LNK4075: не учитывается "/INCREMENTAL" из-за спецификации "/PROFILE"
+LexAnalyzator.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/OPT:REF"
   Analysator.vcxproj -> D:\GitHub\Analizator\Analysator\x64\Debug\Analysator.exe

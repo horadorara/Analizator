@@ -1,6 +1,9 @@
 #include "lex.h"
 #include "tables.h"
 #include "lexeme.h"
+#include <stack>
+
+std::stack<char> bracketStack;
 
 bool lexScan() {
 	states CS;
@@ -110,7 +113,12 @@ bool lexScan() {
 				add();
 				gc();
 				out(2, 20);
-				isComOper = true;
+				// Добавляем '[' в стек
+				bracketStack.push('[');
+
+				if (!isComOper) {
+					isComOper = true; // Начинаем обработку, если это первая скобка
+				}
 				CS = H;
 			}
 
@@ -119,7 +127,22 @@ bool lexScan() {
 				add();
 				gc();
 				out(2, 21);
-				isComOper = false;
+
+				if (!isComOper) {
+					isComOper = true; // Начинаем обработку, если это первая скобка
+				}if (!bracketStack.empty()) {
+					// Убираем последний '[' из стека
+					bracketStack.pop();
+				}
+				else {
+					// Обработка ошибки: закрывающая скобка без открывающей
+					throw std::runtime_error("Unmatched closing bracket ']' detected.");
+				}
+
+				// Если стек пуст, завершаем текущую операцию
+				if (bracketStack.empty()) {
+					isComOper = false;
+				}
 				CS = H;
 			}
 			
@@ -439,6 +462,7 @@ bool lexScan() {
 			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
+				CS = H;
 			}
 
 			else {
@@ -569,7 +593,7 @@ bool lexScan() {
 				gc();
 			}
 
-			if (CH == ' ' || CH == '\n' || CH == '\t') {
+			if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;
@@ -601,7 +625,7 @@ bool lexScan() {
 				CS = _N16;
 			}
 
-			else if (CH == ' ' || CH == '\n' || CH == '\t') {
+			else if (checkTL() || CH == ' ' || CH == '\n' || CH == '\t') {
 				put(TN);
 				out(3, z);
 				CS = H;

@@ -1,16 +1,40 @@
 begin
-var a1, a2 : int;;
-var b1: bool;;
-b1 assign true;
-enter d1 d2 d3 d4 d5 d6 d7;
-for s1 assign 10 val 5 EQ 5 do displ 1;
-[ for s1 assign 5 val 5 EQ 5 do displ 1
-for s1 assign 10 val 5 EQ 5 do displ 1 : enter d1 d2 d3 d4];
-for s1 assign 10 val 5 EQ 5 do displ 1;
-p1 assign 5 EQ 5;
-p2 assign 5 plus 5;
-p3 assign 5 mult 5;
-if p1 EQ 5 then p1 assign 10 else p1 assign 0 plus 5 end;
-for p1 assign 5 val p1 plus 1 do p2 assign 10;
-enter d1 d2 d3 d4 d5 d6 d7
+	{описание с типом int}
+	var a1, a2, a3 : int;;
+	a1 assign (5 plus 5);
+	{описание с типом bool}
+	var b1,b2 : bool;;
+	{описание с типом float}
+	var c1 : float;;
+
+	{присваивание int}
+	a3 assign 5 div 5 div 5 mult 5;
+
+	a2 assign 12E12h;
+	c1 assign 5.0;
+	{присваивание bool}
+	b1 assign a1 EQ 5;
+
+
+	if 5 EQ 5 then [a1 assign a2] else a2 assign a3 end;
+
+	for a1 assign 10 val a3 EQ 5 do [for a1 assign 10 val a3 EQ 5 do [a1 assign a2]
+	enter a1 a2 a3: displ a1, a2, a3];
+
+	[a1 assign 5];
+
+	enter a1 a2 a3;
+
+	displ a1, a2, a3;
+
+	[for a1 assign 10 val a3 EQ 5 do a1 assign 5
+	enter a1 a2 a3: displ a1, a2, a3];
+
+
+	a2 assign ~a1;
+	a2 assign a1 or a2;
+	a2 assign a2 and a3;
+
+	while 5 EQ 5 do a1 assign 5 next
+
 end

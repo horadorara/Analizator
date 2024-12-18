@@ -2,7 +2,7 @@
 #include <sstream>
 
 #include "tables.h"
-#include "syntax.h"
+#include "syntax-semantic.h"
 
 int currentLexIndex = 0;
 Token currentLex;
@@ -32,7 +32,7 @@ void gl() {
 	for (const auto& entry : table) {
 		if (entry.second == currentLex.value) {
 			LEX = entry.first;
-			std::cout << "Value of table:" << LEX << std::endl;
+			//std::cout << "Value of table:" << LEX << std::endl;
 			break;
 		}
 	}

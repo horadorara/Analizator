@@ -43,7 +43,9 @@ std::unordered_map<std::string, int> TL = {
 	{"[", 20},
 	{"]", 21},
 	{" ", 22},
-	{"\n", 23}
+	{"\n", 23},
+	{"(", 24},
+	{")", 25}
 };
 
 std::unordered_map<std::string, int> TN;
