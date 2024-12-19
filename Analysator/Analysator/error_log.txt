@@ -43,3 +43,13 @@ Error: Invalid number form at line: 4, position: 8
 Error: Invalid number form at line: 5, position: 17
 Error: Invalid number form at line: 4, position: 15
 Error: Invalid number form at line: 4, position: 16
+Error: Invalid number form at line: 13, position: 14
+Error: Invalid number form at line: 13, position: 14
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 41, position: 3
+Error: Unknown symbol encountered at line: 49, position: 3

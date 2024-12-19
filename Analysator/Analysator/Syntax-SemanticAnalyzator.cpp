@@ -487,7 +487,6 @@ std::shared_ptr<Node> FACTOR() {
 		auto identifierNode = std::make_shared<Node>("IDENTIFIER", LEX);
 		factorNode->children.push_back(identifierNode);
 		std::string varName = LEX;
-		std::cout << "VarName: " << varName << std::endl;
 		if (symbolTable.find(varName) == symbolTable.end()) {
 			throw std::runtime_error("Variable '" + varName + "' not declared");
 		}

@@ -10,13 +10,22 @@ begin
 	{присваивание int}
 	a3 assign 5 div 5 div 5 mult 5;
 
-	a2 assign 12E12h;
 	c1 assign 5.0;
 	{присваивание bool}
 	b1 assign a1 EQ 5;
 
 
-	if 5 EQ 5 then [a1 assign a2] else a2 assign a3 end;
+	if 5 EQ 5 then
+		if 5 EQ 5 then 
+			[a1 assign a2]
+		else 
+			a2 assign a3 
+		end
+	else 
+		if 5 EQ 5 then 
+			a2 assign a3 
+		end
+	end;
 
 	for a1 assign 10 val a3 EQ 5 do [for a1 assign 10 val a3 EQ 5 do [a1 assign a2]
 	enter a1 a2 a3: displ a1, a2, a3];
@@ -35,6 +44,8 @@ begin
 	a2 assign a1 or a2;
 	a2 assign a2 and a3;
 
-	while 5 EQ 5 do a1 assign 5 next
+	while 5 EQ 5 do a1 assign 5 next;
+
+	if 5 EQ 5 then if 5 EQ 5 then [a1 assign a2] else a2 assign a3 end else a2 assign a3 end
 
 end

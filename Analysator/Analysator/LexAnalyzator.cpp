@@ -4,6 +4,8 @@
 #include <stack>
 
 std::stack<char> bracketStack;
+std::stack<std::string> ifStack;
+
 
 bool lexScan() {
 	states CS;
@@ -113,11 +115,11 @@ bool lexScan() {
 				add();
 				gc();
 				out(2, 20);
-				// Добавляем '[' в стек
+
 				bracketStack.push('[');
 
 				if (!isComOper) {
-					isComOper = true; // Начинаем обработку, если это первая скобка
+					isComOper = true;
 				}
 				CS = H;
 			}
@@ -129,17 +131,15 @@ bool lexScan() {
 				out(2, 21);
 
 				if (!isComOper) {
-					isComOper = true; // Начинаем обработку, если это первая скобка
+					isComOper = true;
 				}if (!bracketStack.empty()) {
-					// Убираем последний '[' из стека
+
 					bracketStack.pop();
 				}
 				else {
-					// Обработка ошибки: закрывающая скобка без открывающей
 					throw std::runtime_error("Unmatched closing bracket ']' detected.");
 				}
 
-				// Если стек пуст, завершаем текущую операцию
 				if (bracketStack.empty()) {
 					isComOper = false;
 				}
@@ -173,8 +173,22 @@ bool lexScan() {
 				if (z == 1) {
 					out(1, 1);
 					if (isIf) {
+						if (!isIf) {
+							isIf = true;
+						}
+						if (!ifStack.empty()) {
+							ifStack.pop();
+						}
+						else {
+							throw std::runtime_error("Unmatched closing if 'end' detected.");
+						}
+
+						if (ifStack.empty()) {
+							isIf = false;
+						}
+
 						CS = H;
-						isIf = false;
+						//isIf = false;
 					}
 					else {
 						std::cout.flush();
@@ -189,7 +203,12 @@ bool lexScan() {
 
 				else if (z == 4) {
 					out(1, 4);
-					isIf = true;
+					ifStack.push("if");
+
+					if (!isIf) {
+						isIf = true;
+					}
+					//isIf = true;
 					CS = H;
 
 				}

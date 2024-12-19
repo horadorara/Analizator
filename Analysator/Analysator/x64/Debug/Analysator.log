@@ -1,10 +1,5 @@
-﻿  Syntax-SemanticAnalyzator.cpp
-D:\GitHub\Analizator\Analysator\Analysator\Syntax-SemanticAnalyzator.cpp(501): warning C4305: аргумент: усечение из "int" в "const _Elem"
-          with
-          [
-              _Elem=char
-          ]
-D:\GitHub\Analizator\Analysator\Analysator\Syntax-SemanticAnalyzator.cpp(501,91): warning C4309: аргумент: усечение константного значения
+﻿  main.cpp
+D:\GitHub\Analizator\Analysator\Analysator\syntax-semantic.h(7,23): warning C4091: extern : пропускается слева от "std::basic_string<char,std::char_traits<char>,std::allocator<char>>", когда ни одна переменная не объявлена
 LINK : warning LNK4075: не учитывается "/INCREMENTAL" из-за спецификации "/PROFILE"
 LexAnalyzator.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/OPT:REF"
   Analysator.vcxproj -> D:\GitHub\Analizator\Analysator\x64\Debug\Analysator.exe
